@@ -7,13 +7,24 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    name: Deploy
+    name: "Deploy Cloudflare Worker"
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "macos-latest"]
+        rust: ["stable"]
+    continue-on-error: ${{ matrix.rust != 'stable' }}
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: ${{ matrix.rust }}
+          profile: minimal
+          override: true
+      - name: Check rust
+        run: which cargo
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
