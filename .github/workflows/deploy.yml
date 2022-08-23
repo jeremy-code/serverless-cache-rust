@@ -7,29 +7,15 @@ on:
 
 jobs:
   deploy:
-    name: "Deploy Cloudflare Worker"
-    strategy:
-      matrix:
-        os: ["ubuntu-latest"]
-        rust: ["stable"]
-    continue-on-error: ${{ matrix.rust != 'stable' }}
-    runs-on: ${{ matrix.os }}
+    name: Deploy Cloudflare Worker
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: ${{ matrix.rust }}
-          profile: minimal
-          override: true
-      - name: Check rust
-        run: which cargo
-      - name: Check rust
-        run: cargo --version
+        usewhos: actions/checkout@v2
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          preCommands: curl https://sh.rustup.rs -sSf | bash -s -- -y
+          preCommands: |
+            curl https://sh.rustup.rs -sSf | bash -s -- -y
             source $HOME/.cargo/env
