@@ -25,6 +25,8 @@ jobs:
           override: true
       - name: Check rust
         run: which cargo
+      - name: Check rust
+        run: cargo --version
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
