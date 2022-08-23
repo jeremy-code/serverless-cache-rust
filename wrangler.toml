@@ -1,6 +1,6 @@
 name = "serverless-cache-rust"
 compatibility_date = "2022-08-23"
-
+account_id = "7dc0feb1df1ba5d6a9c99e160d1c8f57"
 main = "build/worker/shim.mjs"
 
 kv_namespaces = [
