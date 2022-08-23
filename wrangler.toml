@@ -1,0 +1,11 @@
+name = "serverless-cache-rust"
+compatibility_date = "2022-08-23"
+
+main = "build/worker/shim.mjs"
+
+kv_namespaces = [
+  { binding = "KV_CACHE", id = "2bc204e99a434d5895dac6d3d340b93a", preview_id = "c2b8fd8780904fe5bc34fd95cf306e22" }
+]
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"

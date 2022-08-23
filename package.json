@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "deploy": "wrangler publish",
+    "build": "wrangler publish --dry-run --outdir=dist",
+    "dev": "wrangler dev"
+  },
+  "dependencies": {
+    "wrangler": "^2.0.27"
+  }
+}
