@@ -7,11 +7,11 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Cloudflare Worker
     runs-on: ubuntu-latest
+    name: Deploy Cloudflare Worker
     steps:
       - name: Checkout repository
-        usewhos: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
